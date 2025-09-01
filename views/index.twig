@@ -1,1 +1,17 @@
-<h1>A Timber Tutorial</h1>
+<h2>
+ liste d'articles
+</h2>
+{% for item in posts %}
+ {{ item.title }}
+ <hr>
+  {{ item.meta('title') }}
+  {% if item.meta('picture') %}
+   <br>
+    <picture>
+     <source srcset="{{ item.meta('picture')|resize(200, 200) }}" media="(width >= 800px)" />
+     <source srcset="{{ item.meta('picture')|resize(600, 400) }}" media="(width >= 1200px)" />
+     <img src="{{ item.meta('picture') }}" alt="{{ item.meta('picture').alt }}" />
+    </picture>
+   {% endif %}
+  {% endfor %}
+  
